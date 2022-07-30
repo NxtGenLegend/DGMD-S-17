@@ -50,14 +50,14 @@ history1 = model.fit(
     shuffle=True
     )
 
-#model.save('/content/drive/MyDrive/Colab Notebooks/Model/plant_disease_Cnn.h5')
+#model.save('plant_disease_Cnn.h5')
 model.save('plant_disease_Cnn.h5')
 
 
 import numpy as np
 from keras.models import load_model
 from keras.preprocessing import image
-#model_cnn=load_model('/content/drive/MyDrive/Colab Notebooks/Model/plant_disease_Cnn.h5')
+#model_cnn=load_model('plant_disease_Cnn.h5')
 
 model_cnn=load_model('plant_disease_Cnn.h5')
 
@@ -70,6 +70,7 @@ def prepare(img_path):
     return np.expand_dims(x, axis=0)
     
 img_url='/content/drive/MyDrive/Colab Notebooks/dataset/plant__leaf/val/Apple__Healthy/78e648c6-a360-4fa8-b8ab-1225b164b7fd___RS_HL 7243.JPG'
+
 result_cnn = model_cnn.predict([prepare(img_url)])
 disease=image.load_img(img_url)
 plt.imshow(disease)
