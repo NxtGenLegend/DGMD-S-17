@@ -22,6 +22,23 @@ from keras.layers import Input, Add, Dense, Activation, ZeroPadding2D, BatchNorm
 resultsdic = {}
 cnnreslist = []
 
+train_datagen=ImageDataGenerator(
+    rescale=1./255,
+    shear_range=0.2,
+    zoom_range=0.2,
+    horizontal_flip=True
+    )
+
+test_datagen=ImageDataGenerator(rescale=1./255)
+
+input_shape=(224,224,3)
+
+test_generator = test_datagen.flow_from_directory(test_dir,shuffle=True,target_size=(224,224),batch_size=32)
+
+for training_name in train_labels:
+    train_dir = train_path + "/" + training_name
+    train_generator = train_datagen.flow_from_directory(train_dir,target_size=(224,224),batch_size=32)
+
 model = Sequential()
 model.add(Conv2D(32, (5, 5),input_shape=input_shape,activation='relu',name="conv2d_1"))
 model.add(MaxPooling2D(pool_size=(3, 3),name="max_pooling2d_1"))
@@ -55,7 +72,6 @@ history1 = model.fit(
 
 #model.save('plant_disease_Cnn.h5')
 model.save('plant_disease_Cnn.h5')
-
 
 import numpy as np
 from keras.models import load_model
