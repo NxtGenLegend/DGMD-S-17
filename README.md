@@ -11,5 +11,5 @@ Inputs:
 Output:
 - Direct Output Is Given From The CNN Model With Image & Disease Name
 
-Accuracy Scores & Other Details In Report
+Accuracy Scores, Flowchart Details, Background Information & Other Details In Report
 
